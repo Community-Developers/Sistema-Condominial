@@ -12,8 +12,10 @@ public class Apartamento implements Serializable {
 
     @Column(nullable = false, length = 5)
     private String numApartamento;
+
     @Column(nullable = false, length = 5)
     private String bloco;
+
     private Boolean ocupado = true;
 
 }

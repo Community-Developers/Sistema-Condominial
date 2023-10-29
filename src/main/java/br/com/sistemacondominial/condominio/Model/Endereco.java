@@ -10,16 +10,16 @@ import java.io.Serializable;
 @Data
 public class Endereco implements Serializable {
 
-    @Column(nullable = false,  length = 150)
+   @Column(nullable = false,  length = 150)
     private String rua;
 
-    @Column(nullable = false,  length = 150)
+   @Column(nullable = false,  length = 150)
     private String bairro;
 
     @Column(nullable = false,  length = 9)
     private String cep;
 
-     @Column(nullable = false,  length = 30)
+    @Column(nullable = false,  length = 30)
     private String complemento;
 
 }
