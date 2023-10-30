@@ -1,12 +1,11 @@
 package br.com.sistemacondominial.condominio.Service;
 
 import br.com.sistemacondominial.condominio.Dto.MoradorDto;
-import br.com.sistemacondominial.condominio.Exceptions.NotFoundException;
+import br.com.sistemacondominial.condominio.Exceptions.EntidadeNaoEncontradaException;
 import br.com.sistemacondominial.condominio.Model.Apartamento;
 import br.com.sistemacondominial.condominio.Model.Morador;
 import br.com.sistemacondominial.condominio.Repository.MoradorRepository;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -78,7 +77,7 @@ public class MoradorService {
         Optional<Morador> optional = repository.findById(id);
 
         if (optional.isEmpty()) {
-            throw new NotFoundException(String.format("ID %d não encontrada ", id));
+            throw new EntidadeNaoEncontradaException(String.format("ID %d não encontrada ", id));
         }
         return optional.get();
     }

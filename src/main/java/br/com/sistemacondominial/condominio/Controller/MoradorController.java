@@ -1,13 +1,13 @@
 package br.com.sistemacondominial.condominio.Controller;
 
 import br.com.sistemacondominial.condominio.Dto.MoradorDto;
-import br.com.sistemacondominial.condominio.Exceptions.NotFoundException;
+import br.com.sistemacondominial.condominio.Exceptions.EntidadeNaoEncontradaException;
 import br.com.sistemacondominial.condominio.Model.Morador;
 import br.com.sistemacondominial.condominio.Service.MoradorService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,7 +34,7 @@ public class MoradorController {
         try {
             return ResponseEntity.ok().body(morador);
 
-        } catch (NotFoundException e) {
+        } catch (EntidadeNaoEncontradaException e) {
 
             return ResponseEntity.notFound().build();
         }
@@ -54,15 +54,14 @@ public class MoradorController {
             service.deletarCadastro(id);
             return ResponseEntity.noContent().build();
 
-        }catch (NotFoundException e){
+        }catch (EntidadeNaoEncontradaException e){
 
             return ResponseEntity.notFound().build();
         }
 
     }
-
     @PutMapping("/{id}")
-    public ResponseEntity<MoradorDto> atualizarCadastro(@PathVariable Long id,@RequestBody MoradorDto dto){
+    public ResponseEntity<MoradorDto> atualizarCadastro(@PathVariable Long id, @RequestBody MoradorDto dto, HttpServletRequest request){
 
         return  service.atualizacaoCadastral(id, dto);
     }
